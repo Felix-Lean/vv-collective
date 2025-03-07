@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -22,5 +22,81 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+  overflow: hidden;
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: -500% 0;
+  }
+  100% {
+    background-position: 500% 0;
+  }
+}
+
+@keyframes letterSpacing {
+  0%, 100% {
+    letter-spacing: 0.05em;
+  }
+  50% {
+    letter-spacing: 0.15em;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(192,192,192,0.8) 0%,
+    rgba(255,255,255,1) 25%,
+    rgba(192,192,192,0.8) 50%,
+    rgba(255,255,255,1) 75%,
+    rgba(192,192,192,0.8) 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: textShimmer 8s linear infinite;
+}
+
+.animate-letter-spacing {
+  animation: letterSpacing 4s ease-in-out infinite;
+}
+
+@keyframes diagonal-bounce {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  25% {
+    left: calc(100% - 200px);
+    top: calc(100% - 50px);
+  }
+  50% {
+    left: 0;
+    top: calc(100% - 50px);
+  }
+  75% {
+    left: calc(100% - 200px);
+    top: 0;
+  }
+  100% {
+    left: 0;
+    top: 0;
+  }
+}
+
+.screensaver {
+  position: fixed;
+  color: rgba(255,255,255,0.3);
+  font-family: monospace;
+  font-size: 1.5rem;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  animation: diagonal-bounce 15s linear infinite;
+  left: 0;
+  top: 0;
 }
